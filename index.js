@@ -32,7 +32,7 @@ const scrape = async (url) => {
    })
    browser.close()
 
-   const formattedTitle = slugify(title.split(':')[1].trim())
+   const formattedTitle = title.split(':')[1].trim()
    return { novel: result, title: formattedTitle }
 }
 
@@ -42,8 +42,8 @@ const scrapeAll = async () => {
             const url = `https://novelmania.com.br/novels/imortal-renegado/capitulos/livro-${currentBook}-capitulo-${currentChapter}`
             const { novel, title } = await scrape(url)
 
-            const jsonContent = JSON.stringify(novel);
-            const path = resolve('files', `book-${currentBook}/${currentChapter}-${title}.json`)
+            const jsonContent = JSON.stringify({ novel, title });
+            const path = resolve('files', `book-${currentBook}/${currentChapter}-${slugify(title)}.json`)
             const dir = `./files/book-${currentBook}`
 
             if (!fs.existsSync(dir)) {
