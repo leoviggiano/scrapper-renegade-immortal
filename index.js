@@ -40,7 +40,7 @@ const scrape = async (url) => {
 
 const scrapeAll = async () => {
     try {
-        while(books.length > currentBook && currentChapter <= books[books.length - 1]) {
+        while(books.length >= currentBook && currentChapter <= books[books.length - 1]) {
             const url = `https://novelmania.com.br/novels/imortal-renegado/capitulos/livro-${currentBook}-capitulo-${currentChapter}`
             const { novel, title } = await scrape(url)
 
