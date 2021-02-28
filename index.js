@@ -22,7 +22,8 @@ const scrape = async (url) => {
    const result = await page.evaluate(() => {
        const items = []
        document.querySelectorAll('p').forEach(item => items.push(item.innerText))
-       return items
+       const removeIndexes = [0, 1, items.length - 1, items.length - 2]
+       return items.filter((_, index) => !removeIndexes.includes(index))
    })
 
    let [title] = await page.evaluate(() => {
